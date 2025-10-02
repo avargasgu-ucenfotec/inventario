@@ -31,6 +31,8 @@ public class Producto {
         siguiente = null;
     }
 
+    public Producto(){}
+
     //Getters
     public String getTitulo(){
         return titulo;
