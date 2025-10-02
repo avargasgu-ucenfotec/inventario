@@ -9,7 +9,7 @@ public class Producto {
     private float precio;                       // Precio unitario del álbum
     private String genero;                      // Género musical del álbum
     private String fechaLanzamiento;            // Año de lanzamiento del álbum
-    private byte cantidad;                      // Cantidad de álbumes de un mismo título presentes en el inventario
+    private int cantidad;                       // Cantidad de álbumes de un mismo título presentes en el inventario
     private ArrayList<String> listaImagenes;    // Lista de rutas a las imágenes del álbum
     private Producto siguiente;                 // Siguiente producto en la lista enlazada simple de álbumes
 
@@ -20,7 +20,7 @@ public class Producto {
             float precioObjeto,
             String generoObjeto,
             String fechaLanzamientoObjeto,
-            byte cantidadObjeto
+            int cantidadObjeto
     ){
         titulo = tituloObjeto;
         precio = precioObjeto;
@@ -30,6 +30,8 @@ public class Producto {
         listaImagenes = new ArrayList<String>();
         siguiente = null;
     }
+
+    public Producto(){}
 
     //Getters
     public String getTitulo(){
@@ -48,7 +50,7 @@ public class Producto {
         return fechaLanzamiento;
     }
 
-    public byte getCantidad(){
+    public int getCantidad(){
         return cantidad;
     }
 
@@ -73,7 +75,7 @@ public class Producto {
         fechaLanzamiento = nuevoFechaLanzamiento;
     }
 
-    public void setCantidad(byte nuevoCantidad){
+    public void setCantidad(int nuevoCantidad){
         cantidad = nuevoCantidad;
     }
 
