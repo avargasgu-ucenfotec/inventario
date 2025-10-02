@@ -31,7 +31,10 @@ public class Producto {
         siguiente = null;
     }
 
-    public Producto(){}
+    public Producto(){
+        listaImagenes = new ArrayList<String>();
+        siguiente = null;
+    }
 
     //Getters
     public String getTitulo(){
