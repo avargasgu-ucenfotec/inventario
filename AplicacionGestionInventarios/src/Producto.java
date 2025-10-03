@@ -5,13 +5,13 @@ public class Producto {
     //Clase "Producto" que representa un álbum de música.
 
     //Atributos
-    private String titulo;                      // Título del álbum
-    private float precio;                       // Precio unitario del álbum
-    private String genero;                      // Género musical del álbum
-    private String fechaLanzamiento;            // Año de lanzamiento del álbum
-    private int cantidad;                       // Cantidad de álbumes de un mismo título presentes en el inventario
-    private ArrayList<String> listaImagenes;    // Lista de rutas a las imágenes del álbum
-    private Producto siguiente;                 // Siguiente producto en la lista enlazada simple de álbumes
+    private String titulo;                         // Título del álbum
+    private float precio;                          // Precio unitario del álbum
+    private String genero;                         // Género musical del álbum
+    private String fechaLanzamiento;               // Año de lanzamiento del álbum
+    private int cantidad;                          // Cantidad de álbumes de un mismo título presentes en el inventario
+    private final ArrayList<String> listaImagenes; // Lista de rutas a las imágenes del álbum
+    private Producto siguiente;                    // Siguiente producto en la lista enlazada simple de álbumes
 
     //Métodos
     //Constructor
@@ -27,12 +27,12 @@ public class Producto {
         genero = generoObjeto;
         fechaLanzamiento = fechaLanzamientoObjeto;
         cantidad = cantidadObjeto;
-        listaImagenes = new ArrayList<String>();
+        listaImagenes = new ArrayList<>();
         siguiente = null;
     }
 
     public Producto(){
-        listaImagenes = new ArrayList<String>();
+        listaImagenes = new ArrayList<>();
         siguiente = null;
     }
 
@@ -55,6 +55,10 @@ public class Producto {
 
     public int getCantidad(){
         return cantidad;
+    }
+
+    public ArrayList<String> getListaImagenes(){
+        return listaImagenes;
     }
 
     public Producto getSiguiente(){
@@ -82,7 +86,22 @@ public class Producto {
         cantidad = nuevoCantidad;
     }
 
+    public void setListaImagenes(String nuevoRuta){
+        listaImagenes.add(nuevoRuta);
+    }
+
     public void setSiguiente(Producto nuevoSiguiente){
         siguiente = nuevoSiguiente;
+    }
+
+    //toString()
+    public String toString(){
+        return "Título del álbum: " + titulo +
+                "\nPrecio unitario: " + precio +
+                "\nGénero musical: " + genero +
+                "\nFecha de lanzamiento: " + fechaLanzamiento +
+                "\nCantidad en inventario: " + cantidad +
+                "\nImágenes del álbum: " + listaImagenes +
+                "\n";
     }
 }

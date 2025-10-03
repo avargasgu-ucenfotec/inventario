@@ -23,6 +23,14 @@ public class ListaProducto {
 
     //Insertar producto al inicio de una lista enlazada simple
     public void insertarProductoInicio(
+            Producto nuevoProducto
+    ){
+        nuevoProducto.setSiguiente(primero);
+        setPrimero(nuevoProducto);
+    }
+
+    //Insertar producto al inicio de una lista enlazada simple
+    public void insertarProductoInicio(
             String tituloProducto,
             float precioProducto,
             String generoProducto,
@@ -64,12 +72,28 @@ public class ListaProducto {
         productoTemp.setSiguiente(nuevoProducto);
     }
 
+    //Imprimir elementos de una lista de productos
+    public void mostrarLista(){
+        if(primero == null){
+            System.out.println("Inventario vacío.\n");
+            return;
+        }
+        Producto productoActual = primero;
+        while(productoActual != null){
+            System.out.println(productoActual);
+            productoActual = productoActual.getSiguiente();
+        }
+    }
+
     //Imprimir reporte de costos totales
     public void imprimirReporte(){
         String tablaSuperior = "| %-40s | %-10.1f | %-8d | %-10.1f |%n";
         String tablaSeparador = "+------------------------------------------+------------+----------+------------+%n";
         String tablaInferior = "| %-40s | %-10s | %-8s | %-10.1f |%n";
         String tablaTitulos = "| Título                                   | Precio     | Cantidad | Total      |%n";
+        String tablaEncabezado = "| Reporte de costos                        |            |          |            |%n";
+        System.out.format(tablaSeparador);
+        System.out.format(tablaEncabezado);
         System.out.format(tablaSeparador);
         System.out.format(tablaTitulos);
         System.out.format(tablaSeparador);
