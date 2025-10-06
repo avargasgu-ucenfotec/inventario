@@ -8,7 +8,7 @@ public class Main {
     static PrintStream out = System.out;
 
     public static void main(String[] args) throws Exception {
-        menu();
+        menu(); // Adiccion del menu
     }
 
     public static void menu() throws Exception {
