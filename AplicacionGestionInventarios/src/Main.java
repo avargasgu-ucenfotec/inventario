@@ -1,174 +1,158 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
-import java.util.ArrayList;
 
 public class Main {
     static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
     static PrintStream out = System.out;
+    static ListaProducto lista = new ListaProducto();
 
-    public static void main(String[] args) throws Exception {
-        menu(); // Adiccion del menu
+    public static void main() throws Exception {
+        menu();
     }
 
-    public static void menu() throws Exception {
+        public static void menu() throws Exception {
+        // Cargar productos iniciales
+        Producto album1 = new Producto("Sgt. Pepper's Lonely Hearts Club Band", 10077.1f, "Rock", "1967", 10);
+        Producto album2 = new Producto("Thriller", 19635.0f, "Pop", "1982", 15);
+        Producto album3 = new Producto("Nevermind", 7052.5f, "Grunge", "1991", 20);
 
-        ArrayList<Producto> listaProductos = new ArrayList<>();
+        album1.setListaImagenes("../img/sgtpepperslonelyheartsclubband_front.jpg");
+        album1.setListaImagenes("../img/sgtpepperslonelyheartsclubband_back.jpg");
 
-        // Carga inicial de productos
-        Producto album1 = new Producto(
-                "Sgt. Pepper's Lonely Hearts Club Band",
-                10077.1f,
-                "Rock",
-                "1967",
-                10
-        );
+        album2.setListaImagenes("../img/thriller_front.jpg");
+        album2.setListaImagenes("../img/thriller_back.jpg");
 
-        Producto album2 = new Producto(
-                "Thriller",
-                19635.0f,
-                "Pop",
-                "1982",
-                15
-        );
+        album3.setListaImagenes("../img/nevermind_front.jpg");
+        album3.setListaImagenes("../img/nevermind_back.jpg");
 
-        Producto album3 = new Producto(
-                "Nevermind",
-                7052.5f,
-                "Grunge",
-                "1991",
-                20
-        );
-
-        listaProductos.add(album1);
-        listaProductos.add(album2);
-        listaProductos.add(album3);
+        lista.insertarProductoInicio(album1);
+        lista.insertarProductoInicio(album2);
+        lista.insertarProductoInicio(album3);
 
         int opcion;
-
         do {
-            out.println("\n===== MENÚ PRINCIPAL =====");
-            out.println("1. Agregar producto");
-            out.println("2. Mostrar lista de productos");
-            out.println("3. Imprimir reporte");
-            out.println("4. Modificar producto");
-            out.println("5. Eliminar producto");
+            out.println("\n---- MENÚ DE GESTIÓN DE INVENTARIO ----");
+            out.println("1. Agregar producto al inicio");
+            out.println("2. Agregar producto al final");
+            out.println("3. Mostrar lista de productos");
+            out.println("4. Imprimir reporte de costos");
+            out.println("5. Modificar producto existente");
             out.println("6. Agregar imagen a un producto");
             out.println("0. Salir");
             out.print("Seleccione una opción: ");
-
             opcion = Integer.parseInt(in.readLine());
-            out.println();
 
             switch (opcion) {
-                case 1:
-                    out.println("Ingrese el nombre del producto:");
-                    String titulo = in.readLine();
-
-                    out.println("Ingrese el precio:");
-                    float precio = Float.parseFloat(in.readLine());
-
-                    out.println("Ingrese el género:");
-                    String genero = in.readLine();
-
-                    out.println("Ingrese la fecha de lanzamiento:");
-                    String fechaLanzamiento = in.readLine();
-
-                    out.println("Ingrese la cantidad disponible:");
-                    int cantidad = Integer.parseInt(in.readLine());
-
-                    Producto nuevo = new Producto(titulo, precio, genero, fechaLanzamiento, cantidad);
-                    listaProductos.add(nuevo);
-                    out.println("Producto agregado exitosamente.\n");
-                    break;
-
-                case 2:
-                    out.println("===== LISTA DE PRODUCTOS =====");
-                    for (Producto p : listaProductos) {
-                        out.println(p.toString());
-                    }
-                    break;
-
-                case 3:
-                    out.println("===== REPORTE GENERAL =====");
-                    float total = 0;
-                    for (Producto p : listaProductos) {
-                        total += p.getPrecio();
-                        out.println(p.toString());
-                    }
-                    out.println("------------------------------");
-                    out.println("Total acumulado: $" + total);
-                    break;
-
-                case 4:
-                    out.println("Ingrese el título del producto a modificar:");
-                    String tituloModificar = in.readLine();
-                    boolean encontrado = false;
-                    for (Producto p : listaProductos) {
-                        if (p.getTitulo().equalsIgnoreCase(tituloModificar)) {
-                            out.println("Ingrese el nuevo precio:");
-                            p.setPrecio(Float.parseFloat(in.readLine()));
-                            out.println("Ingrese el nuevo género:");
-                            p.setGenero(in.readLine());
-                            out.println("Ingrese la nueva fecha de lanzamiento:");
-                            p.setFechaLanzamiento(in.readLine());
-                            out.println("Ingrese la nueva cantidad disponible:");
-                            p.setCantidad(Integer.parseInt(in.readLine()));
-                            out.println("Producto modificado exitosamente.\n");
-                            encontrado = true;
-                            break;
-                        }
-                    }
-                    if (!encontrado) {
-                        out.println("No se encontró el producto indicado.\n");
-                    }
-                    break;
-
-                case 5:
-                    out.println("Ingrese el título del producto a eliminar:");
-                    String tituloEliminar = in.readLine();
-                    Producto productoEliminar = null;
-                    for (Producto p : listaProductos) {
-                        if (p.getTitulo().equalsIgnoreCase(tituloEliminar)) {
-                            productoEliminar = p;
-                            break;
-                        }
-                    }
-                    if (productoEliminar != null) {
-                        listaProductos.remove(productoEliminar);
-                        out.println("Producto eliminado exitosamente.\n");
-                    } else {
-                        out.println("No se encontró el producto indicado.\n");
-                    }
-                    break;
-
-                case 6:
-                    out.println("Ingrese el título del producto al que desea agregar una imagen:");
-                    String tituloImagen = in.readLine();
-                    boolean encontradoImg = false;
-                    for (Producto p : listaProductos) {
-                        if (p.getTitulo().equalsIgnoreCase(tituloImagen)) {
-                            out.println("Ingrese la ruta de la imagen (ej: .../img/album1.jpg):");
-                            String ruta = in.readLine();
-                            p.setListaImagenes(ruta);
-                            out.println("Imagen agregada exitosamente.\n");
-                            encontradoImg = true;
-                            break;
-                        }
-                    }
-                    if (!encontradoImg) {
-                        out.println("No se encontró el producto indicado.\n");
-                    }
-                    break;
-
-                case 0:
-                    out.println("Saliendo del sistema...");
-                    break;
-
-                default:
-                    out.println("Opción no válida. Intente de nuevo.\n");
+                case 1 -> agregarProductoInicio();
+                case 2 -> agregarProductoFinal();
+                case 3 -> lista.mostrarLista();
+                case 4 -> lista.imprimirReporte();
+                case 5 -> modificarProducto();
+                case 6 -> agregarImagen();
+                case 0 -> out.println("Saliendo del sistema...");
+                default -> out.println("Opción no válida. Intente de nuevo.");
             }
-
         } while (opcion != 0);
+    }
+
+    static void agregarProductoInicio() throws Exception {
+        out.print("Ingrese el título del producto: ");
+        String titulo = in.readLine();
+        out.print("Ingrese el precio: ");
+        float precio = Float.parseFloat(in.readLine());
+        out.print("Ingrese la categoría: ");
+        String categoria = in.readLine();
+        out.print("Ingrese la fecha de lanzamiento: ");
+        String fecha = in.readLine();
+        out.print("Ingrese la cantidad: ");
+        int cantidad = Integer.parseInt(in.readLine());
+
+        lista.insertarProductoInicio(titulo, precio, categoria, fecha, cantidad);
+        out.println("Producto agregado al inicio exitosamente.");
+    }
+
+    static void agregarProductoFinal() throws Exception {
+        out.print("Ingrese el título del producto: ");
+        String titulo = in.readLine();
+        out.print("Ingrese el precio: ");
+        float precio = Float.parseFloat(in.readLine());
+        out.print("Ingrese la categoría: ");
+        String categoria = in.readLine();
+        out.print("Ingrese la fecha de lanzamiento o vencimiento: ");
+        String fecha = in.readLine();
+        out.print("Ingrese la cantidad: ");
+        int cantidad = Integer.parseInt(in.readLine());
+
+        lista.insertarProductoFinal(titulo, precio, categoria, fecha, cantidad);
+        out.println("Producto agregado al final exitosamente.");
+    }
+
+    static void modificarProducto() throws Exception {
+        if (lista.getPrimero() == null) {
+            out.println("No hay productos en la lista.");
+            return;
+        }
+
+        out.print("Ingrese el título del producto que desea modificar: ");
+        String tituloBuscar = in.readLine();
+
+        Producto actual = lista.getPrimero();
+        while (actual != null && !actual.getTitulo().equalsIgnoreCase(tituloBuscar)) {
+            actual = actual.getSiguiente();
+        }
+
+        if (actual == null) {
+            out.println("No se encontró el producto.");
+            return;
+        }
+
+        out.println("Producto encontrado. Ingrese nuevos datos (deje vacío para mantener el valor actual):");
+        out.print("Nuevo título: ");
+        String nuevoTitulo = in.readLine();
+        if (!nuevoTitulo.isEmpty()) actual.setTitulo(nuevoTitulo);
+
+        out.print("Nuevo precio: ");
+        String nuevoPrecio = in.readLine();
+        if (!nuevoPrecio.isEmpty()) actual.setPrecio(Float.parseFloat(nuevoPrecio));
+
+        out.print("Nueva categoría: ");
+        String nuevoGenero = in.readLine();
+        if (!nuevoGenero.isEmpty()) actual.setGenero(nuevoGenero);
+
+        out.print("Nueva fecha: ");
+        String nuevaFecha = in.readLine();
+        if (!nuevaFecha.isEmpty()) actual.setFechaLanzamiento(nuevaFecha);
+
+        out.print("Nueva cantidad: ");
+        String nuevaCantidad = in.readLine();
+        if (!nuevaCantidad.isEmpty()) actual.setCantidad(Integer.parseInt(nuevaCantidad));
+
+        out.println("Producto modificado exitosamente.");
+    }
+
+    static void agregarImagen() throws Exception {
+        if (lista.getPrimero() == null) {
+            out.println("No hay productos en la lista.");
+            return;
+        }
+
+        out.print("Ingrese el título del producto al que desea añadir una imagen: ");
+        String titulo = in.readLine();
+
+        Producto actual = lista.getPrimero();
+        while (actual != null && !actual.getTitulo().equalsIgnoreCase(titulo)) {
+            actual = actual.getSiguiente();
+        }
+
+        if (actual == null) {
+            out.println("No se encontró el producto.");
+            return;
+        }
+
+        out.print("Ingrese la ruta de la imagen (ej: .../img/album1.jpg): ");
+        String ruta = in.readLine();
+        actual.setListaImagenes(ruta);
+        out.println("Imagen añadida correctamente al producto.");
     }
 }
