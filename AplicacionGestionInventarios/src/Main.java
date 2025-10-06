@@ -7,7 +7,7 @@ public class Main {
     static PrintStream out = System.out;
     static ListaProducto lista = new ListaProducto();
 
-    static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
         // Cargar productos iniciales
         Producto album1 = new Producto("Sgt. Pepper's Lonely Hearts Club Band", 10077.1f, "Rock", "1967", 10);
         Producto album2 = new Producto("Thriller", 19635.0f, "Pop", "1982", 15);
