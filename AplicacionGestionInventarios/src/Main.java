@@ -7,7 +7,7 @@ public class Main {
     static PrintStream out = System.out;
     static ListaProducto lista = new ListaProducto();
 
-    public static void main() throws Exception {
+    public static void main(String[] args) throws Exception {
         menu();
     }
 
