@@ -10,3 +10,7 @@ El presente trabajo consiste en el desarrollo de una aplicación para la gestió
 - [ ] La estructura de datos debe tener implementados todos los métodos habituales asociados con una lista enlazada simple, permitiendo la inserción tanto al inicio como al final de la lista, la modificación de los **Productos** (incluyendo la añadidura de imágenes a su lista), y tener además un método adicional que permita recorrer la **ListaProductos** e imprimir un reporte de los costos totales correspondiente a cada **Producto** que incluye en función de su cantidad, así como el costo total acumulado de la lista completa.
 - [ ] Además de las dos clases de entidad requeridas para la implementación de la **ListaProductos** como tal (i.e., la clase nodo y la clase estructura), cada grupo debe desarrollar un **menu()** de consola dentro de una clase funcional que permita interactuar con la lista de forma intuitiva y amigable con el usuario.
 - [ ] El menú se debe alojar dentro de la clase **Main** del programa, donde también debe estar la rutina **main()** que lo invoque y lo haga funcionar correctamente.
+
+## Segundo avance
+### Requerimientos
+- [ ] 
